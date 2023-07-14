@@ -1,0 +1,12 @@
+{
+    [
+        {    
+            "id":number,
+            "title":"title"
+            "price":price
+            "volume":volume
+            "date":"date"
+            "category:["category"]
+        }
+    ]
+}
