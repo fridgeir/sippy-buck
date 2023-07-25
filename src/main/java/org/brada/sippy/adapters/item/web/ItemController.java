@@ -1,11 +1,9 @@
-package org.brada.sippy.adapter;
+package org.brada.sippy.adapters.item.web;
 
 import org.brada.sippy.domain.models.Item;
-import org.brada.sippy.domain.port.ItemService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.brada.sippy.domain.ports.ItemService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +25,13 @@ class ItemController {
     @GetMapping("/{id}")
     Item getItem(@PathVariable String id){
         return domainService.getItem(id);
+    }
+
+    @PostMapping("/{id}")
+    ResponseEntity<Item> storeItem(@PathVariable String id, @RequestBody Item item){
+        if(id.equals(item.id())){
+            return ResponseEntity.badRequest().body(null);
+        }
+        return ResponseEntity.ok(domainService.store(item));
     }
 }

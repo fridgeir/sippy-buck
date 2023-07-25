@@ -8,7 +8,7 @@ class ItemServiceTest extends Specification {
     ItemService service
 
     def setup() {
-        service = new ItemService()
+        service = new ItemService(repository)
     }
 
     def "test we cannot register signle instance with incorrect address"() {
